@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 
-const postSchema = mongoose.Schema({ //tabloyu oluşturuyoruz;
+const postSchema = mongoose.Schema({ 
     title: {
         type: String,
-        required: true //zorunlu demek
+        required: true 
     },
     description:{
         type: String,
@@ -16,4 +16,4 @@ const postSchema = mongoose.Schema({ //tabloyu oluşturuyoruz;
     }
 });
 
-module.exports = mongoose.model('Posts', postSchema);//export ediyoruz
+module.exports = mongoose.model('Posts', postSchema);

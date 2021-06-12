@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 //get by id;
-router.get('/:bookId', async(req, res) => { // burda id ye göre post seçeceğiz 
+router.get('/:bookId', async(req, res) => {
     try{
         const book = await Book.findById(req.params.bookId);
         res.json(book);
@@ -32,22 +32,22 @@ router.get('/book', (req, res) => {
 //add;
 router.post('/', (req, res) => {
    console.log(req.body);
-   const book = new Book({ //böylece datalar artık post içinde
+   const book = new Book({ 
        name: req.body.name,
        author: req.body.author,
        price: req.body.price,
        image: req.body.image
    });
-   book.save()//post taki dataları artık kaydedebilir db ye
+   book.save()
     .then(data => {
-        res.json(data);//data yı json a çevirdik
+        res.json(data);
     })
     .catch(err => {
         res.json({message : err});
-    });//böylece postman vasıtasıyla girdiğimiz data yı db ye kaydettik ve db de gördük.........
+    });
 });
 
-// delete-DELETE;
+//delete;
 router.delete('/:bookId', async (req,res) => {
     try{
         const removedBook = await Book.remove({ _id: req.params.bookId });

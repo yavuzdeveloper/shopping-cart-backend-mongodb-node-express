@@ -5,10 +5,6 @@ const Item = require('../models/ItemModel');
 const router = express.Router();
 
 
-// router.get('/', (req, res) => {
-//     res.send("burası items un yeri:");
-// });
-
 //get all books in Cart ; http://localhost:8080/items
 router.get('/', async (req, res) => {
     try {
@@ -32,7 +28,7 @@ router.post('/', (req, res) => {
     });
     item.save()
         .then(data => {
-            res.json(data);//data yı json a çevirdik
+            res.json(data);
     })
     .catch(err => {
         res.json({message : err});
@@ -40,14 +36,14 @@ router.post('/', (req, res) => {
 });
 
 
-// // DELETE in Cart;
-// router.delete('/:bookId', async (req,res) => {
-//     try{
-//         const removedBook = await Book.remove({ _id: req.params.bookId });
-//         res.json(removedBook);
-//     } catch (err) {
-//         res.json({message: err})
-//     }
-// });
+// DELETE in Cart;
+router.delete('/:bookId', async (req,res) => {
+    try{
+        const removedBook = await Item.remove({ _id: req.params.bookId });
+        res.json(removedBook);
+    } catch (err) {
+        res.json({message: err})
+    }
+});
 
 module.exports = router;

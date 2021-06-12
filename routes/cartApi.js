@@ -15,8 +15,8 @@ router.get('/', async (req, res) => {
     }
 });
 
-//id ye göre;
-router.get('/:cartId', async(req, res) => { //  
+//by id;
+router.get('/:cartId', async(req, res) => {  
     try{
         const cart = await Cart.findById(req.params.cartId);
         res.json(cart);
@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
    });
    cart.save()
     .then(data => {
-        res.json(data);//data yı json a çevirdik
+        res.json(data);
     })
     .catch(err => {
         res.json({ message : err });
