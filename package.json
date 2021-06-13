@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "shopping-cart-backend-mongodb-node-express",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
