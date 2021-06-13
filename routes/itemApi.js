@@ -6,6 +6,12 @@ const router = express.Router();
 
 
 //get all books in Cart ; http://localhost:8080/items
+
+// router.get('/items', (req, res) => {
+//     res.send("items.....");
+// });
+
+
 router.get('/', async (req, res) => {
     try {
         const items = await Item.find();
@@ -15,16 +21,15 @@ router.get('/', async (req, res) => {
     }
 });
 
-
 //addToCart;
 router.post('/', (req, res) => {
     console.log(req.body);
     const item = new Item({ 
         count: req.body.count,
-        name: req.body.book.name,
-        author: req.body.book.author,
-        price: req.body.book.price,
-        image: req.body.book.image   
+        name: req.body.name,
+        author: req.body.author,
+        price: req.body.price,
+        image: req.body.image   
     });
     item.save()
         .then(data => {
