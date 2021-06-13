@@ -5,7 +5,6 @@ const Post = require('../models/PostModel');
 const router = express.Router();
 
 
-//****************************
 router.get('/post', (req, res) => {
     res.send("burası post un yeri:");
 });
@@ -15,9 +14,9 @@ router.get('/books', (req, res) => {
 router.get('/books/book', (req, res) => {
     res.send("BOOK.....");
 });
-//****************************
-//get All post;
 
+
+//get All post;
 router.get('/', async (req, res) => {
     try {
         const posts = await Post.find();
@@ -27,24 +26,25 @@ router.get('/', async (req, res) => {
     }
 });
 
-//****************************ADD post;
+//Add post;
 router.post('/', (req, res) => {
    console.log(req.body);
-   const post = new Post({ //böylece datalar artık post içinde
+   const post = new Post({
        title: req.body.title,
        description: req.body.description
    });
-   post.save()//post taki dataları artık kaydedebilir db ye
+   post.save()
     .then(data => {
-        res.json(data);//data yı json a çevirdik
+        res.json(data);
     })
     .catch(err => {
         res.json({ message : err });
-    });//böylece postman vasıtasıyla girdiğimiz data yı db ye kaydettik ve db de gördük.........
+    });
 });
 
-//burda id ye göre post seçeceğiz****************************
-router.get('/:postId', async(req, res) => { //  
+
+//by id
+router.get('/:postId', async(req, res) => {  
     try{
         const post = await Post.findById(req.params.postId);
         res.json(post);
@@ -52,7 +52,8 @@ router.get('/:postId', async(req, res) => { //
         res.json({ message : err });
     }
 });
-//delete****************************
+
+//delete
 router.delete('/:postId', async(req, res) => { // 
     try{
         const removedPost = await Post.remove({_id : req.params.postId});
@@ -74,7 +75,6 @@ router.patch('/:postId', async(req, res) => {
         res.json({ message : err });
     }
 });
-
 
 
 
