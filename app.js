@@ -41,5 +41,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(8080, () => {
-    console.log("http://localhost:8080 adresinden gelen istekler dinleniyor...");
+    console.log("http://localhost:8080 listening for requests from...");
 })
